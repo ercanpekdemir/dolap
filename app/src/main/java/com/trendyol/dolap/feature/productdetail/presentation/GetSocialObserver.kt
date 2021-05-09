@@ -6,8 +6,6 @@ import com.trendyol.dolap.feature.productdetail.data.response.SocialResponse
 class GetSocialObserver(private val viewModel: ProductDetailFragmentViewModel):
     BaseDisposableSingleObserver<SocialResponse>(viewModel) {
 
-
-
     override fun onResultSuccess(result: SocialResponse) {
         viewModel.handleSocial(result)
     }
