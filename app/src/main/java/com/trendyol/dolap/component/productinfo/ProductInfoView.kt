@@ -8,8 +8,10 @@ import com.trendyol.dolap.R
 import com.trendyol.dolap.databinding.ComponentProductInfoBinding
 
 @BindingAdapter("viewData")
-fun ProductInfoView.setData(viewData: ProductInfoViewData) {
-    viewModel.handleInput(viewData)
+fun ProductInfoView.setData(viewData: ProductInfoViewData?) {
+    viewData?.let {
+        viewModel.handleInput(it)
+    }
 }
 
 class ProductInfoView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)

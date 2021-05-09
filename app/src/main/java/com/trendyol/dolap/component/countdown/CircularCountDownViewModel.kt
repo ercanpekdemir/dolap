@@ -10,6 +10,8 @@ class CircularCountDownViewModel: BaseComponentViewModel<CircularCountDownViewDa
         private const val MAX_PROGRESS = 100
     }
 
+    var handler: CircularCountDownHandler? = null
+
     var timer: CountDownUtil? = null
     var count = 0
     val progressObservable = ObservableInt(MAX_PROGRESS)
@@ -34,9 +36,16 @@ class CircularCountDownViewModel: BaseComponentViewModel<CircularCountDownViewDa
     override fun onFinish() {
         progressObservable.set(MAX_PROGRESS)
         timerObservable.set(count.toString())
-        timer?.start()
+        timer?.cancel()
+        handler?.onFinish()
+    }
 
-        //todo add livedata to make network request each 20 second
+    fun startTimer() {
+        timer?.start()
+    }
+
+    fun stopTimer() {
+        timer?.cancel()
     }
 
     private fun calculatePercentage(remainingTime: Int, finish: Int) =

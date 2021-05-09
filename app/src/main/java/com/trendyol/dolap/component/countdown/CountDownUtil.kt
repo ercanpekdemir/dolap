@@ -15,8 +15,4 @@ class CountDownUtil(millsInFuture: Long, interval: Long, listener: CountDownList
     override fun onFinish() {
         countDownListener.onFinish()
     }
-
-    fun clearTimer() {
-        cancel()
-    }
 }

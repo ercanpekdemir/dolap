@@ -8,14 +8,14 @@ import com.trendyol.dolap.R
 import com.trendyol.dolap.databinding.ComponentCircularCountdownBinding
 
 @BindingAdapter("viewData")
-fun CircularCountDownView.setData(viewData: CircularCountDownViewData) {
-    viewModel.handleInput(viewData)
+fun CircularCountDownView.setData(viewData: CircularCountDownViewData?) {
+    viewData?.let {
+        viewModel.handleInput(it)
+    }
 }
 
 class CircularCountDownView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : BaseComponent<ComponentCircularCountdownBinding, CircularCountDownViewModel>(context, attrs, defStyleAttr) {
-
-//    private var handler: CircularCountDownViewHandler? = null
 
     override fun provideViewModel() = CircularCountDownViewModel()
 
@@ -24,16 +24,4 @@ class CircularCountDownView @JvmOverloads constructor(context: Context, attrs: A
     }
 
     override fun provideLayoutId() = R.layout.component_circular_countdown
-
-    override fun initComponent(context: Context) {
-        super.initComponent(context)
-        dataBinding.progressBar.setOnClickListener {
-//            handler?.handleClick()
-        }
-    }
-
-//    fun setHandler(handler: CircularCountDownViewHandler) {
-//        this.handler = handler
-//    }
-
 }
